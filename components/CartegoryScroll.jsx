@@ -29,7 +29,7 @@ export function ScrollAreaHorizontalDemo() {
         <ScrollArea className="justify-center items-center align-middle mx-auto whitespace-nowrap ">
             <div className="flex w-max space-x-4 p-4">
                 {Cartegories.map((Cartegory) => (
-                    <Link className="hover:opacity-75" key={Cartegory.name} href={`/Shop/${Cartegory.name}`} >
+                    <Link className="hover:opacity-80" key={Cartegory.name} href={`/Shop/?cartegory=${Cartegory.name}`} >
 
                         <figure key={Cartegory.name} className=" flex-1 shrink-0">
                             <div className="overflow-hidden rounded-md">
@@ -41,8 +41,8 @@ export function ScrollAreaHorizontalDemo() {
                                     height={400}
                                 />
                             </div>
-                            <figcaption className="pt-3 text-xl text-muted-foreground">
-                                <span className="font-bold text-accent-foreground ">
+                            <figcaption className=" text-center text-xl text-muted-foreground">
+                                <span className="font-bold hover:underline text-accent-foreground ">
                                     {Cartegory.name}
                                 </span>
                             </figcaption>
