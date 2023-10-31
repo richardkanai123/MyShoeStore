@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const ShopPage = async () => {
-    const res = await fetch('/api/shoes')
+    const res = await fetch(`${process.env.BASE_URL}/api/shoes`)
     if (!res.ok) {
         throw new Error("Fetching products failed")
     }
