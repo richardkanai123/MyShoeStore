@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ShopPage = async () => {
+const Page = async () => {
     const res = await fetch(`${process.env.BASE_URL}/api/shoes`)
     if (!res.ok) {
         throw new Error("Fetching products failed")
@@ -17,4 +17,4 @@ const ShopPage = async () => {
     )
 }
 
-export default ShopPage
+export default Page
