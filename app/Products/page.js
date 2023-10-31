@@ -1,3 +1,4 @@
+import ProductCard from '@/components/ProductCard'
 import React from 'react'
 
 
@@ -6,13 +7,15 @@ const Page = async () => {
     if (!res.ok) {
         throw new Error("Fetching products failed")
     }
-    const data = await res.json()
+    const { Shoes } = await res.json()
 
     return (
-        <div className="w-full p-5">
-            <pre>
-                {JSON.stringify(data, null, 2)}
-            </pre>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-4">
+            {
+                Shoes.map((shoe) => (
+                    <ProductCard Shoe={shoe} key={shoe.shoeId} />
+                ))
+            }
         </div>
     )
 }
