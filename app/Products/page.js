@@ -10,7 +10,7 @@ const Page = async () => {
     const { Shoes } = await res.json()
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
             {
                 Shoes.map((shoe) => (
                     <ProductCard Shoe={shoe} key={shoe.shoeId} />

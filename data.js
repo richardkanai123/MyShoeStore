@@ -24,7 +24,7 @@ export const Shoes = [
         price: 6500,
         sizes: [36, 37, 38, 39, 40, 41, 42, 43, 44],
         colors: ["Brown", "Black"],
-        imageURL: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&q=80&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        imageURL: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJyb3duJTIwdGltYmVybGFuZCUyMHNob2V8ZW58MHx8MHx8fDA%3D"
     },
     {
         shoeId: 4,
