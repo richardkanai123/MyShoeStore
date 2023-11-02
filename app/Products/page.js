@@ -1,4 +1,5 @@
 import ProductCard from '@/components/ProductCard'
+import { Suspense } from 'react'
 
 
 const Page = async () => {
@@ -10,13 +11,19 @@ const Page = async () => {
     const { Shoes } = await res.json()
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
-            {
-                Shoes.map((shoe) => (
-                    <ProductCard Shoe={shoe} key={shoe.shoeId} />
-                ))
-            }
-        </div>
+        <>
+
+            <h1 className="text-xl text-center">Our Shoes</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
+                <Suspense fallback={<p>Loading Shoes</p>}>
+                    {
+                        Shoes.map((shoe) => (
+                            <ProductCard Shoe={shoe} key={shoe.shoeId} />
+                        ))
+                    }
+                </Suspense>
+            </div >
+        </>
     )
 }
 
