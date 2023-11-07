@@ -13,7 +13,7 @@ const Page = async () => {
     return (
         <>
 
-            <h1 className="text-xl text-center">Our Shoes</h1>
+            <h1 className="text-xl font-semibold text-center">Our Shoes Selection</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
                 <Suspense fallback={<p>Loading Shoes</p>}>
                     {
