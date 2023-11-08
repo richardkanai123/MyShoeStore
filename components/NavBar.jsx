@@ -11,7 +11,7 @@ const NavBar = () => {
         },
         {
             tag: "Shop",
-            path: "/Products"
+            path: "/shop"
         },
         {
             tag: "Contact",
