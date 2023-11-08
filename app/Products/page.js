@@ -8,7 +8,8 @@ const Page = async () => {
         // throw new Error("Fetching products failed")
         console.log('Error occured')
     }
-    const { Shoes } = await res.json()
+    const data = await res.json()
+
 
     return (
         <>
@@ -17,7 +18,7 @@ const Page = async () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
                 <Suspense fallback={<p>Loading Shoes</p>}>
                     {
-                        Shoes.map((shoe) => (
+                        data.Shoes.map((shoe) => (
                             <ProductCard Shoe={shoe} key={shoe.shoeId} />
                         ))
                     }
