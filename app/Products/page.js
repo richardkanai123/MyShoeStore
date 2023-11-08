@@ -1,4 +1,5 @@
 import ProductCard from '@/components/ProductCard'
+import ShoeList from '@/components/ShoeList'
 
 
 const getShoes = async () => {
@@ -18,16 +19,8 @@ export default async function Page() {
     return (
         <>
 
-            <h1 className="text-xl font-semibold text-center">Our Shoes Selection</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pb-2">
-
-                {
-                    shoesList.map((shoe) => (
-                        <ProductCard Shoe={shoe} key={shoe.shoeId} />
-                    ))
-                }
-
-            </div >
+            <h1 className="text-xl font-semibold text-center mb-3 mt-2">Our Shoes Selection</h1>
+            <ShoeList ShoesData={shoesList} />
         </>
     )
 }

@@ -15,12 +15,12 @@ const ProductCard = ({ Shoe }) => {
 
     return (
         <Link href={`/Products/${shoeId}`}>
-            <Card id={shoeId} className={cn('w-full min-w-[90vw] cursor-pointer hover:opacity-90 transition-all ease-in hover:shadow-lg md:min-w-[350px] dark:shadow-teal-500 ')}>
+            <Card id={shoeId} className={cn('w-full min-w-[90vw] cursor-pointer opacity-90 hover:filter transition-all ease-in hover:shadow-md md:min-w-[350px] hover:opacity-100 shadow-lg  dark:shadow-teal-500 ')}>
                 <CardHeader>
                     <CardTitle>{brandName}</CardTitle>
                 </CardHeader>
                 <CardContent className={cn('relative mx-auto self-center w-full  mb-4 aspect-video object-center px-2 sm:max-w-full md:max-w-sm')}>
-                    <Image src={imageURL} alt={brandName + shoeId} fill objectFit='cover' objectPosition='center' className={cn('rounded')} />
+                    <Image src={imageURL} alt={brandName + shoeId} fill objectFit='contain' objectPosition='center' className={cn('rounded')} />
                 </CardContent>
                 <CardFooter>
                     <div className="w-full flex justify-around">
