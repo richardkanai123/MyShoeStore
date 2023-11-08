@@ -2,6 +2,10 @@ import ShoeList from "@/components/ShoeList"
 
 
 async function getShoesData() {
+    if (`${process.env.NEXT_PUBLIC_BASEURL}` === undefined) {
+        throw new Error('Failed to fetch data')
+        return null;
+    }
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/shoes`, {
         cache: 'no-cache',
     }
