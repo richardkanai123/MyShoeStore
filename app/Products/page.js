@@ -3,7 +3,9 @@ import ProductCard from '@/components/ProductCard'
 
 
 const getShoes = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/shoes`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/shoes`,
+        { cache: 'no-store' }
+    )
     if (!res.ok) {
         console.log('Error occured')
     }
