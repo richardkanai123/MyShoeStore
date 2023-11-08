@@ -11,7 +11,6 @@ const ProductCard = ({ Shoe }) => {
     const { brandName, price, imageURL, shoeId } = Shoe
 
     const SelectLogo = Logos.filter((logo) => logo.brand === brandName)
-    console.log();
 
     return (
         <Link href={`/Products/${shoeId}`}>
