@@ -11,8 +11,7 @@ const getShoes = async () => {
     const data = await res.json()
     return data.Shoes
 }
-
-const Page = async () => {
+export default async function Page() {
 
     const shoesList = await getShoes()
 
@@ -32,5 +31,3 @@ const Page = async () => {
         </>
     )
 }
-
-export default Page
