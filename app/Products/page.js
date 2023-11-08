@@ -1,12 +1,11 @@
-import ProductCard from '@/components/ProductCard'
 import { Suspense } from 'react'
+import ProductCard from '@/components/ProductCard'
 
 
 const getShoes = async () => {
     const res = await fetch(`${process.env.BASE_URL}/api/shoes`)
     if (!res.ok) {
         console.log('Error occured')
-        throw new Error('Failed to fetch data')
     }
     const data = await res.json()
     return data.Shoes
