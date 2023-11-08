@@ -3,7 +3,7 @@ import ProductCard from '@/components/ProductCard'
 
 
 const getShoes = async () => {
-    const res = await fetch(`${process.env.BASE_URL}/api/shoes`)
+    const res = await fetch('/api/shoes')
     if (!res.ok) {
         console.log('Error occured')
     }
