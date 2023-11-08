@@ -3,14 +3,14 @@ import ShoeList from "@/components/ShoeList"
 
 const getShoesData = async () => {
 
-    const res = await fetch(`https://nextcommerce-richardkanai123.vercel.app/api/shoes`)
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/shoes`)
+        const data = await res.json()
+        return data.Shoes
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data');
+    } catch (error) {
+        console.log(error)
     }
-
-    const data = await res.json()
-    return data.Shoes
 
 }
 

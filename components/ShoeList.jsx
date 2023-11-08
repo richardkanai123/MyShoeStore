@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
-import ProductCard from './ProductCard'
+import ProductCard from '@/components/ProductCard'
+
 
 const ShoeList = ({ ShoesData }) => {
     return (
