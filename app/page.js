@@ -50,7 +50,7 @@ export default function Home() {
           </p>
 
           <Button asChild>
-            <Link href='/Products' className={cn('mt-4')}>See Our Products</Link>
+            <Link href='/shop' className={cn('mt-4')}>See Our Products</Link>
           </Button>
         </section>
 

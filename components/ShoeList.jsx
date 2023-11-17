@@ -8,12 +8,10 @@ const ShoeList = ({ ShoesData }) => {
 
             <Suspense fallback={<p>Loading ....</p>}>
                 {
-                    ShoesData ?
-                        ShoesData.map((shoe) => (
-                            <ProductCard Shoe={shoe} key={shoe.shoeId} />
-                        ))
-                        :
-                        <p>No shoes found</p>
+                    ShoesData.map((shoe) => (
+                        <ProductCard Shoe={shoe} key={shoe.shoeId} />
+                    ))
+
                 }
             </Suspense>
         </div >

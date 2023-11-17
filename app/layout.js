@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
 import NavBar from '@/components/NavBar'
@@ -11,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className='w-full mx-auto  bg-slate-200  max-w-7xl dark:bg-sky-900 relative'>
+      <body className='w-full mx-auto  bg-slate-400  max-w-7xl dark:bg-sky-900 relative'>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
