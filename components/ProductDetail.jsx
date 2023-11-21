@@ -15,16 +15,13 @@ const ProductDetail = ({ shoe }) => {
     const { replace } = useRouter()
     const pathname = usePathname()
 
-
-
-
     // size
     const AddSizeToPathUrl = (shoeSize) => {
         const params = new URLSearchParams(searchParams)
         params.set('size', parseInt(shoeSize))
         replace(`${pathname}?${params}`)
     }
-    // size
+    // Color
     const AddColorToPathUrl = (shoeColor) => {
         const params = new URLSearchParams(searchParams)
         params.set('color', shoeColor)
@@ -35,8 +32,8 @@ const ProductDetail = ({ shoe }) => {
     return (
         <div className="container py-2 px-4 flex flex-col items-center md:flex-row align-middle transition-all ease-in delay-75 md:gap-8">
 
-            <div className="flex flex-col rounded sm:w-full mb-4  w-[300px] max-w-sm min-h-[400px]  md:h-auto relative object-center object-cover overflow-hidden md:min-w-[350px] md:max-w-[450px] ">
-                <Image src={imageURL} alt={brandName + category} fill className="object-cover w-full" />
+            <div className="flex flex-col rounded sm:w-full mb-4  w-[300px] max-w-sm min-h-[350px] md:h-auto relative object-center object-cover overflow-hidden md:min-w-[350px] md:max-w-[450px] ">
+                <Image src={imageURL} alt={brandName + category} fill className="object-cover h-full w-full" />
 
             </div>
             <div className="w-full flex flex-col">
@@ -44,9 +41,10 @@ const ProductDetail = ({ shoe }) => {
                 <div className="flex gap-2 w-full items-center align-middle flex-wrap mb-3">
                     {sizes.map((size) =>
                         <Button
+                            id={size}
                             onClick={() => AddSizeToPathUrl(size)}
                             name='sizebutton' className={
-                                searchParams.get('size') == parseInt(size) ? cn('bg-sky-200 transition-all ease-in delay-75 ') : (' transition-all ease-in delay-75')
+                                searchParams.get('size') == parseInt(size) ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75 ') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75')
                             } size='icon' key={size}>
                             {size}
                         </Button>)
@@ -55,7 +53,7 @@ const ProductDetail = ({ shoe }) => {
                 <div className="flex gap-2 w-full items-center align-middle flex-wrap mb-3">
                     {colors.map((color) => <Button
                         onClick={() => AddColorToPathUrl(color)}
-                        className={searchParams.get('color') === color ? cn('bg-sky-200 transition-all ease-in delay-75') : (' transition-all ease-in delay-75')}
+                        className={searchParams.get('color') === color ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75')}
                         key={color}>{color}</Button>)
                     }
                 </div>
