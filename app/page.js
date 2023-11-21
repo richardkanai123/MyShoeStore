@@ -20,7 +20,7 @@ export default function Home() {
 
           <aside className='w-full flex gap-4 align-middle mt-6'>
             <Button className={cn('p-7')} asChild>
-              <Link className='text-xl font-semibold hover:text-sky-300' href='/Products'>Shop Now</Link>
+              <Link className='text-xl font-semibold hover:text-sky-300' href='/shop'>Shop Now</Link>
             </Button>
           </aside>
         </section>
