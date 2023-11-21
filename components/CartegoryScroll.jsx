@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 
 export const Cartegories = [
@@ -51,7 +52,7 @@ export function ScrollAreaHorizontalDemo() {
                     </Link>
                 ))}
             </div>
-            <ScrollBar orientation="horizontal" />
+            <ScrollBar className={cn('h-6 rounded-lg mt-2 opacity-50 bg-muted-foreground ')} orientation="horizontal" />
         </ScrollArea>
     )
 }

@@ -33,24 +33,21 @@ export default function Home() {
 
       {/* About us */}
 
-      <div className="w-full py-4 px-2 md:px-4 flex flex-col md:flex-row gap-4 align-middle justify-center">
-        <section className="w-full md:w-1/2 min-h-[300px] relative object-cover rounded-3xl overflow-hidden flx-1">
-          <Image src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            objectFit='cover'
-            fill alt="Cover Image Loadu=ing..." />
-
+      <div className="w-full mt-3 min-h-max md:min-h-[80vh] grid grid-cols-1 grid-rows-2 gap-2 md:grid-cols-2 md:grid-rows-1 pb-3 ">
+        <section className="relative">
+          <Image src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=95&w=374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className='min-h-[300px] max-h-[400px] w-full max-w-[374px] self-center object-cover mx-auto'
+            fill
+            alt="Cover Image Loadu=ing..."
+          />
         </section>
-        <section className="w-full md:w-1/2 flex-1">
-          <h1 className='text-3xl font-bold mt-3'>About us</h1>
-          <p className='text-lg leading-6 mb-2'>Welcome to our premier shoe store in the heart of Kenya, where we bring you the finest selection of footwear that combines style, comfort, and quality. At our store, we understand that a great pair of shoes can make all the difference in your day, and we&apos;re here to make sure you find the perfect fit. We take pride in offering a wide range of shoe options for every occasion, from casual to formal, all curated to meet the highest standards of quality. Our commitment to providing the best in footwear is unwavering, and we source our products from trusted brands to ensure that each pair is not just stylish, but also durable and comfortable.
-          </p>
-
-          <p className='text-lg leading-6'>
-            We are dedicated to delivering a seamless shopping experience, which is why we offer convenient, reliable delivery services across Kenya. With our simple online ordering system, you can browse our extensive collection, select your favorite styles, and have them delivered right to your doorstep. Whether you&apos;re searching for the latest fashion trends or classic staples, we have something for everyone. Trust us to be your go-to destination for top-quality shoes, and experience the joy of walking in style and comfort. Your satisfaction is our priority, and we can&apos;t wait to help you put your best foot forward.
+        <section className="px-2 flex flex-col align-middle">
+          <h1 className='text-4xl font-bold mb-1 text-muted-foreground'>About us</h1>
+          <p className='text-lg leading-6 font-semibold mb-2 '>Welcome to our premier shoe store in the heart of Kenya, where we bring you the finest selection of footwear that combines style, comfort, and quality. At our store, we understand that a great pair of shoes can make all the difference in your day, and we&apos;re here to make sure you find the perfect fit. We take pride in offering a wide range of shoe options for every occasion, from casual to formal, all curated to meet the highest standards of quality. Our commitment to providing the best in footwear is unwavering, and we source our products from trusted brands to ensure that each pair is not just stylish, but also durable and comfortable.
           </p>
 
           <Button asChild>
-            <Link href='/shop' className={cn('mt-4')}>See Our Products</Link>
+            <Link href='/shop' className={cn('mt-4 w-[90%] mx-auto text-lg hover:underline md:w-[200px]')}>See Our Products</Link>
           </Button>
         </section>
 
