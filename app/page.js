@@ -54,7 +54,7 @@ export default function Home() {
       </div>
 
       <div className="w-full px-4 bg-opacity-70 pb-8 md:w-[80%] border-4 mx-auto mb-4 rounded text-center border-muted py-2 mt-2">
-        <h3 className="text-2xl mb-1 font-bold text-muted ">Our Dedication</h3>
+        <h3 className="text-2xl mb-1 font-bold text-accent-foreground  ">Our Dedication</h3>
         <p className='mx-auto  font-bold text-xl'>
           We are dedicated to delivering a seamless shopping experience, which is why we offer convenient, reliable delivery services across Kenya.
         </p>

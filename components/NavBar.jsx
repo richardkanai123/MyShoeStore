@@ -45,12 +45,13 @@ const NavBar = () => {
                 }
             </section>
 
-            <div className="p-1 flex items-center gap-4 align-middle">
+            <div className="p-1 flex items-center gap-4 align-middle mr-4">
                 <Button variant='ghost' className={cn('p-2 rounded-md relative')} size='icon'>
                     <ShoppingCartIcon className="w-6 h-6" />
                     <span className="absolute text-lg text-yellow-500 font-extrabold top-0 left-0 z-10">2</span>
                 </Button>
-                <ModeToggle /></div>
+                <ModeToggle />
+            </div>
         </nav>
     )
 }
