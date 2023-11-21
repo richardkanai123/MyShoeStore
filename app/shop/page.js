@@ -10,6 +10,7 @@ const getShoesData = async () => {
 
     } catch (error) {
         console.log(error)
+        throw new Error("Error occured when getting shoes!")
     }
 
 }

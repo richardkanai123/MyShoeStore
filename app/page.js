@@ -53,6 +53,14 @@ export default function Home() {
 
       </div>
 
+      <div className="w-full px-4 bg-opacity-70 pb-8 md:w-[80%] border-4 mx-auto mb-4 rounded text-center border-muted py-2 mt-2">
+        <h3 className="text-2xl mb-1 font-bold text-muted ">Our Dedication</h3>
+        <p className='mx-auto  font-bold text-xl'>
+          We are dedicated to delivering a seamless shopping experience, which is why we offer convenient, reliable delivery services across Kenya.
+        </p>
+        <p className='mx-auto  font-semibold text-lg'>
+          With our simple online ordering system, you can browse our extensive collection, select your favorite styles, and have them delivered right to your doorstep. Whether you&apos;re searching for the latest fashion trends or classic staples, we have something for everyone. Trust us to be your go-to destination for top-quality shoes, and experience the joy of walking in style and comfort. Your satisfaction is our priority, and we can&apos;t wait to help you put your best foot forward.</p>
+      </div>
 
     </div>
   )
