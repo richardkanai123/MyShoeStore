@@ -1,11 +1,8 @@
 'use client'
 
 import Link from "next/link"
-import { ModeToggle } from "./ModeToggle"
 import { usePathname } from "next/navigation"
-import { Button } from "./ui/button"
-import { ShoppingCartIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import SettingsMenu from "./SettingsMenu"
 
 
 const NavBar = () => {
@@ -45,13 +42,7 @@ const NavBar = () => {
                 }
             </section>
 
-            <div className="p-1 flex items-center gap-4 align-middle mr-4">
-                <Button variant='ghost' className={cn('p-2 rounded-md relative')} size='icon'>
-                    <ShoppingCartIcon className="w-6 h-6" />
-                    <span className="absolute text-lg text-yellow-500 font-extrabold top-0 left-0 z-10">2</span>
-                </Button>
-                <ModeToggle />
-            </div>
+            <SettingsMenu />
         </nav>
     )
 }
