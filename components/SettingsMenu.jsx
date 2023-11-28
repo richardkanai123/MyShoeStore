@@ -11,8 +11,10 @@ import { ShoppingCartIcon, SlidersHorizontal, UserCog2, UserCog2Icon } from "luc
 import { ModeToggle } from "@/components/ModeToggle"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 const SettingsMenu = () => {
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className={cn('p-2 pointer-events-auto cursor-pointer')}>
@@ -29,7 +31,10 @@ const SettingsMenu = () => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                    <UserCog2Icon /> <span className="text-sm font-light ml-3">Account</span>
+                    <Link href='/Profile' className="flex items-center gap-1" >
+                        <UserCog2Icon />
+                        <span className=" text-base ">Profile</span>
+                    </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
             </DropdownMenuContent>

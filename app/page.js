@@ -1,4 +1,6 @@
 import { ScrollAreaHorizontalDemo } from '@/components/CartegoryScroll'
+import HomeShoesList from '@/components/HomeShoesList'
+import ShoeList from '@/components/ShoeList'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
@@ -30,6 +32,11 @@ export default function Home() {
       <div className="w-full px-2 flex flex-col items-center overflow-hidden mt-6">
         <h2 className='w-full text-left text-2xl  font-bold'>Browse Cartegories</h2>
         <ScrollAreaHorizontalDemo />
+      </div>
+      {/* ShoelIst*/}
+      <div className="w-full px-2 flex flex-col items-center overflow-hidden mt-6 mb-8 border-b-slate-600">
+        <h2 className='w-full text-left text-3xl mb-3 px-4  font-bold'>Our High Quality Shoes</h2>
+        <HomeShoesList />
       </div>
 
       {/* About us */}

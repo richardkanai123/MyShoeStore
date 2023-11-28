@@ -3,9 +3,13 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SettingsMenu from "./SettingsMenu"
-
+import CartLink from "./CartLink"
+import { ModeToggle } from "./ModeToggle"
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs"
+import { LogInIcon, LogOutIcon } from "lucide-react"
 
 const NavBar = () => {
+    const { isLoaded, isSignedIn, user } = useUser();
 
     const pathName = usePathname()
 
@@ -40,9 +44,15 @@ const NavBar = () => {
                         {link.tag}
                     </Link>))
                 }
+                <CartLink />
             </section>
 
-            <SettingsMenu />
+            <section className="flex items-center gap-4">
+                <ModeToggle />
+                {
+                    isSignedIn ? <UserButton /> : <SignInButton />
+                }
+            </section>
         </nav>
     )
 }
