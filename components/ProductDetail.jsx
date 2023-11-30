@@ -31,8 +31,6 @@ const ProductDetail = ({ shoe }) => {
 
     const { isSignedIn } = useUser()
 
-
-
     return (
         <div className="container py-2 px-4 flex flex-col items-center md:flex-row align-middle transition-all ease-in delay-75 md:gap-8">
 
