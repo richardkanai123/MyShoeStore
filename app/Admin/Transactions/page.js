@@ -2,7 +2,7 @@ import React from 'react'
 
 const TransactionsPage = () => {
     return (
-        <div>TransactionsPage</div>
+        <div>Transactions  Table to be added here</div>
     )
 }
 
