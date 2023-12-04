@@ -4,8 +4,8 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { Minus, Plus } from "lucide-react"
-
+import { Minus, Plus, ShoppingCartIcon } from "lucide-react"
+import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 
 const ProductDetail = ({ shoe }) => {
     const { shoeId, brandName, category, price, sizes, colors, imageURL } = shoe
@@ -29,6 +29,8 @@ const ProductDetail = ({ shoe }) => {
     }
 
 
+    const { isSignedIn } = useUser()
+
     return (
         <div className="container py-2 px-4 flex flex-col items-center md:flex-row align-middle transition-all ease-in delay-75 md:gap-8">
 
@@ -44,7 +46,7 @@ const ProductDetail = ({ shoe }) => {
                             id={size}
                             onClick={() => AddSizeToPathUrl(size)}
                             name='sizebutton' className={
-                                searchParams.get('size') == parseInt(size) ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75 ') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75')
+                                searchParams.get('size') == parseInt(size) ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in ') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in')
                             } size='icon' key={size}>
                             {size}
                         </Button>)
@@ -53,7 +55,7 @@ const ProductDetail = ({ shoe }) => {
                 <div className="flex gap-2 w-full items-center align-middle flex-wrap mb-3">
                     {colors.map((color) => <Button
                         onClick={() => AddColorToPathUrl(color)}
-                        className={searchParams.get('color') === color ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in delay-75')}
+                        className={searchParams.get('color') === color ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in ') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in ')}
                         key={color}>{color}</Button>)
                     }
                 </div>
@@ -118,11 +120,19 @@ const ProductDetail = ({ shoe }) => {
                     // </div>
                 }
 
-                <Button
-                    onClick={() => {
-                        console.log(searchParams.get('size'), searchParams.get('color'))
-                    }}
-                    className={cn('w-[250px] self-center hover:bg-opacity-50 hover:animate-pulse ')}>Add to Cart</Button>
+                {
+                    isSignedIn ? <Button
+                        onClick={() => {
+                            console.log(searchParams.get('size'), searchParams.get('color'))
+                        }}
+                        className={cn('w-[250px] self-center hover:bg-opacity-50 hover:bg-muted-foreground flex items-center gap-2 hover:animate-pulse ')}>Add to Cart <ShoppingCartIcon /> </Button>
+                        :
+                        <div className="flex flex-col items-center gap-4">
+                            <p className="text-sm font-semibold"> Sign in to Add to cart</p>
+                            <SignInButton
+                                className='text-white p-4 min-w-[250px] max-w-xs rounded-md bg-muted-foreground ' />
+                        </div>
+                }
             </div>
 
         </div >

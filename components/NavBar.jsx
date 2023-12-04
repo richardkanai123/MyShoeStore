@@ -1,14 +1,15 @@
 'use client'
 
 import Link from "next/link"
-import { ModeToggle } from "./ModeToggle"
 import { usePathname } from "next/navigation"
-import { Button } from "./ui/button"
-import { ShoppingCartIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-
+import SettingsMenu from "./SettingsMenu"
+import CartLink from "./CartLink"
+import { ModeToggle } from "./ModeToggle"
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs"
+import { LogInIcon, LogOutIcon } from "lucide-react"
 
 const NavBar = () => {
+    const { isLoaded, isSignedIn, user } = useUser();
 
     const pathName = usePathname()
 
@@ -43,15 +44,15 @@ const NavBar = () => {
                         {link.tag}
                     </Link>))
                 }
+                <CartLink />
             </section>
 
-            <div className="p-1 flex items-center gap-4 align-middle mr-4">
-                <Button variant='ghost' className={cn('p-2 rounded-md relative')} size='icon'>
-                    <ShoppingCartIcon className="w-6 h-6" />
-                    <span className="absolute text-lg text-yellow-500 font-extrabold top-0 left-0 z-10">2</span>
-                </Button>
+            <section className="flex items-center gap-4">
                 <ModeToggle />
-            </div>
+                {
+                    isSignedIn ? <UserButton /> : <SignInButton />
+                }
+            </section>
         </nav>
     )
 }

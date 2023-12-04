@@ -1,4 +1,6 @@
 import { ScrollAreaHorizontalDemo } from '@/components/CartegoryScroll'
+import HomeShoesList from '@/components/HomeShoesList'
+import ShoeList from '@/components/ShoeList'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
@@ -27,13 +29,19 @@ export default function Home() {
       </div>
 
       {/* cartegories */}
-      <div className="w-full px-2 flex items-center mt-4">
+      <div className="w-full px-2 flex flex-col items-center overflow-hidden mt-6">
+        <h2 className='w-full text-left text-2xl  font-bold'>Browse Cartegories</h2>
         <ScrollAreaHorizontalDemo />
+      </div>
+      {/* ShoelIst*/}
+      <div className="w-full px-2 flex flex-col items-center overflow-hidden mt-6 mb-8 border-b-slate-600">
+        <h2 className='w-full text-left text-3xl mb-3 px-4  font-bold'>Our High Quality Shoes</h2>
+        <HomeShoesList />
       </div>
 
       {/* About us */}
 
-      <div className="w-full mt-3 min-h-max md:min-h-[80vh] grid grid-cols-1 grid-rows-2 gap-2 md:grid-cols-2 md:grid-rows-1 pb-3 ">
+      <div className="w-full mt-4 min-h-max md:min-h-[80vh] grid grid-cols-1 grid-rows-2 gap-2 md:grid-cols-2 md:grid-rows-1 pb-3 ">
         <section className="relative">
           <Image src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=95&w=374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             className='min-h-[300px] max-h-[400px] w-full max-w-[374px] self-center object-cover mx-auto'
@@ -41,9 +49,9 @@ export default function Home() {
             alt="Cover Image Loadu=ing..."
           />
         </section>
-        <section className="px-2 flex flex-col align-middle">
+        <section className="px-2 sm:px-3 flex flex-col align-middle">
           <h1 className='text-4xl font-bold mb-1 text-muted-foreground'>About us</h1>
-          <p className='text-lg leading-6 font-semibold mb-2 '>Welcome to our premier shoe store in the heart of Kenya, where we bring you the finest selection of footwear that combines style, comfort, and quality. At our store, we understand that a great pair of shoes can make all the difference in your day, and we&apos;re here to make sure you find the perfect fit. We take pride in offering a wide range of shoe options for every occasion, from casual to formal, all curated to meet the highest standards of quality. Our commitment to providing the best in footwear is unwavering, and we source our products from trusted brands to ensure that each pair is not just stylish, but also durable and comfortable.
+          <p className='text-lg leading-6 font-semibold mb-2 text-sky-400 dark:text-sky-100 sm:text-justify first-letter:text-2xl first-letter:font-bold'>Welcome to our premier shoe store in the heart of Kenya, where we bring you the finest selection of footwear that combines style, comfort, and quality. At our store, we understand that a great pair of shoes can make all the difference in your day, and we&apos;re here to make sure you find the perfect fit. We take pride in offering a wide range of shoe options for every occasion, from casual to formal, all curated to meet the highest standards of quality. Our commitment to providing the best in footwear is unwavering, and we source our products from trusted brands to ensure that each pair is not just stylish, but also durable and comfortable.
           </p>
 
           <Button asChild>
@@ -53,9 +61,9 @@ export default function Home() {
 
       </div>
 
-      <div className="w-full px-4 bg-opacity-70 pb-8 md:w-[80%] border-4 mx-auto mb-4 rounded text-center border-muted py-2 mt-2">
-        <h3 className="text-2xl mb-1 font-bold text-accent-foreground  ">Our Dedication</h3>
-        <p className='mx-auto  font-bold text-xl'>
+      <div className="w-full px-4 bg-opacity-70 pb-8 bg-sky-500 dark:bg-slate-800 mx-auto mb-4 rounded text-center border-muted py-2 mt-2">
+        <h3 className="text-2xl mb-1 font-bold text-accent-foreground underline  ">Our Dedication</h3>
+        <p className='mx-auto w-[80%] font-bold text-xl'>
           We are dedicated to delivering a seamless shopping experience, which is why we offer convenient, reliable delivery services across Kenya.
         </p>
         <p className='mx-auto  font-semibold text-lg'>
