@@ -12,13 +12,17 @@ const ProductCard = ({ Shoe }) => {
     const SelectLogo = Logos.filter((logo) => logo.brand === brandName)
 
     return (
-        <Link href={`/shop/Product/${shoeId}`}>
+        <Link href={`/shop/Product/${shoeId}?id=${shoeId}`}>
             <Card id={shoeId} className={cn('w-full min-w-[90vw] bg-slate-100 dark:bg-sky-950 cursor-pointer opacity-90 hover:filter transition-all ease-in md:min-w-[350px] hover:opacity-100 shadow-sm hover:shadow-inner  dark:shadow-teal-500 delay-75')}>
                 <CardHeader>
                     <CardTitle>{brandName}</CardTitle>
                 </CardHeader>
                 <CardContent className={cn('relative mx-auto self-center w-full  mb-4 aspect-video object-center px-2 sm:max-w-full md:max-w-sm')}>
-                    <Image src={imageURL} alt={brandName + shoeId} fill objectFit='contain' objectPosition='center' className={cn('rounded')} />
+                    <Image src={imageURL} alt={brandName + shoeId} fill style={{
+                        objectFit: 'cover',
+                        objectPosition: "center"
+
+                    }} className={cn('rounded')} />
                 </CardContent>
                 <CardFooter>
                     <div className="w-full flex justify-around">

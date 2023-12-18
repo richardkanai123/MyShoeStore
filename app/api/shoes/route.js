@@ -8,7 +8,9 @@ export async function GET(request) {
         return NextResponse.json({ Shoes }, { status: 200 })
     } else {
         const data = Shoes.filter((shoe) => shoe.category.toLowerCase() == q.toLowerCase() || shoe.brandName == q.toLowerCase())
-        console.log(data);
+        if (data.length === 0) {
+            return NextResponse.json({ message: "Category does not exist" }, { status: 404 })
+        }
         return NextResponse.json({ data }, { status: 200 })
     }
 }

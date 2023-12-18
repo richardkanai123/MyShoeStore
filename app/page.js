@@ -46,7 +46,13 @@ export default function Home() {
           <Image src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=95&w=374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             className='min-h-[300px] max-h-[400px] w-full max-w-[374px] self-center object-cover mx-auto'
             fill
-            alt="Cover Image Loadu=ing..."
+            alt="Cover Image Loading..."
+            style={{
+              objectFit: 'cover',
+              objectPosition: "center"
+
+            }}
+            sizes='100%'
           />
         </section>
         <section className="px-2 sm:px-3 flex flex-col align-middle">

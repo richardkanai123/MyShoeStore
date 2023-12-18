@@ -8,7 +8,8 @@ import { Minus, Plus, ShoppingCartIcon } from "lucide-react"
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 
 const ProductDetail = ({ shoe }) => {
-    const { shoeId, brandName, category, price, sizes, colors, imageURL } = shoe
+    console.log(shoe);
+    const { shoeId, brandName, category, price, sizes, colors, imageURL } = shoe.data[0]
 
     // url manipulation
     const searchParams = useSearchParams()

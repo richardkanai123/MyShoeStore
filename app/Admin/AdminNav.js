@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { SignOutButton, UserButton } from '@clerk/nextjs'
-import { ArrowLeftCircle, ArrowLeftCircleIcon, ArrowRightCircleIcon, Folders, LayoutDashboardIcon, MenuSquareIcon, ShoppingBasket, Users, WalletCardsIcon } from 'lucide-react'
+import { ArrowLeftCircle, ArrowLeftCircleIcon, ArrowRightCircleIcon, Folders, LayoutDashboardIcon, MenuSquareIcon, ShoppingBasket, UploadCloud, Users, WalletCardsIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
@@ -27,6 +27,11 @@ const AdminNav = () => {
             tag: "Products",
             Icon: <ShoppingBasket className='font-bold' />,
             path: '/Admin/Products'
+        },
+        {
+            tag: "Add New",
+            Icon: <UploadCloud className='font-bold' />,
+            path: '/Admin/Products/Add'
         },
         {
             tag: "Orders",
@@ -62,7 +67,8 @@ const AdminNav = () => {
             <div className="flex flex-col gap-4 pt-4 ">
                 {Links.map((link) =>
                     <Link
-                        className='w-full p-2 overflow-hidden flex gap-1 md:gap-2 items-center  text-base font-semibold rounded-l-md border-2 hover:bg-slate-100 dark:hover:bg-sky-700 hover:overflow-visible transition-all delay-100 ease-in '
+                        className={
+                            pathname === `${link.path}` ? 'w-full p-2 overflow-hidden flex gap-1 md:gap-2 items-center  text-base font-semibold rounded-l-md border-2 bg-sky-500 dark:bg-sky-700 hover:overflow-visible transition-all delay-100 ease-in ' : 'w-full p-2 overflow-hidden flex gap-1 md:gap-2 items-center  text-base font-semibold rounded-l-md border-2 hover:bg-slate-100 dark:hover:bg-sky-700 hover:overflow-visible transition-all delay-100 ease-in '}
                         key={link.tag}
                         href={link.path}>
                         <span>{link.Icon}</span>
