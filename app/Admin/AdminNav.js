@@ -8,13 +8,7 @@ import React, { useState } from 'react'
 
 const AdminNav = () => {
     const [openMenu, setOpenMenu] = useState(true)
-
-    const searchParams = useSearchParams()
-    const { replace } = useRouter()
     const pathname = usePathname()
-
-    console.log(pathname);
-
 
     // links
     const Links = [
@@ -72,9 +66,9 @@ const AdminNav = () => {
                         key={link.tag}
                         href={link.path}>
                         <span>{link.Icon}</span>
-                        {link.tag}
+                        {openMenu && link.tag}
                     </Link>)}
-                <div className='flex gap-2 w-full items-center justify-around overflow-hidden transition-all ease-in delay-75'><UserButton /> <SignOutButton /> </div>
+                <div className='flex gap-2 w-full items-center justify-around overflow-hidden transition-all ease-in delay-75'><UserButton /> {openMenu && <SignOutButton />} </div>
             </div>
         </div>
     )
