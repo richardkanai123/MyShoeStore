@@ -3,6 +3,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import NavBar from '@/components/NavBar'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
+import { EdgeStoreProvider } from '@/lib/edgestore'
+
 export const metadata = {
   title: 'BizShop',
   description: 'Best online Shop Model',
@@ -31,9 +33,11 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             <NavBar />
-            <main className='w-full flex flex-col align-middle justify-center items-center min-h-screen max-h-fit  '>
-              {children}
-            </main>
+            <EdgeStoreProvider>
+              <main className='w-full flex flex-col align-middle justify-center items-center min-h-screen max-h-fit  '>
+                {children}
+              </main>
+            </EdgeStoreProvider>
           </ThemeProvider>
         </body>
       </html>

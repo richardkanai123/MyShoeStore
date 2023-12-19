@@ -1,8 +1,11 @@
 'use client'
 
+import { SingleImageDropzone } from '@/components/ImageDropZone';
 import { Button } from '@/components/ui/button';
+import { useEdgeStore } from '@/lib/edgestore';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const AddNewProductPage = () => {
     //states
@@ -14,14 +17,19 @@ const AddNewProductPage = () => {
     const [shoeBrand, setShoeBrand] = useState('');
     const [shoeCategory, setShoeCategory] = useState('');
     const [shoePrice, setShoePrice] = useState(0);
+    const [uploadProgress, setUploadProgress] = useState(0);
     const [shoeDescprition, setShoeDescprition] = useState('');
-    const [shoeImageUrl, setShoeImageUrl] = useState('');
-    const [shoeThumbnail, setShoeThumbnail] = useState('');
+    const [shoeImage, setShoeImage] = useState();
+    const [shoeImageUrl, setShoeImageUrl] = useState({
+        url: '',
+        thumbnail: ''
+    });
 
-
+    // edgestore
+    const { edgestore } = useEdgeStore()
 
     // constants
-    const sizes = ['32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44'];
+    const sizes = [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44];
     const colors = ['Black', 'White', 'Red', 'Blue', 'Green', 'Yellow', 'Brown', 'Gray', 'Silver', 'Gold'];
     const shoeBrands = [
         "Nike",
@@ -98,8 +106,41 @@ const AddNewProductPage = () => {
 
 
 
+
+
     return (
         <div className="container flex flex-col items-center align-middle justify-center gap-2 pt-4">
+
+            <div className="w-full flex items-center flex-col text-left">
+                <label className="w-full text-base" htmlFor="shoeImage">Shoe Image</label>
+                <input type='file' onChange={
+                    (e) => setShoeImage(e.target.files?.[0])} accept='image' max={50000} id='shoeImage' name='shoeImage' className="w-full bg-muted-foreground p-4 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" />
+
+                <div className="w-full mt-3 mb-2 mx-auto bg-muted h-4 rounded-lg ease-linear duration-100 transition-all">
+                    <div style={{
+                        width: uploadProgress
+                    }} className="bg-lime-800 h-full rounded-lg"></div>
+                </div>
+
+                <button onClick={async () => {
+                    try {
+                        if (shoeImage) {
+                            const res = await edgestore.PublicFiles.upload({
+                                shoeImage, onProgressChange: ((progress) => setUploadProgress(progress))
+                            })
+                            setShoeImageUrl({
+                                url: res.url,
+                                thumbnail: res.url,
+                            })
+
+                        }
+
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+                } >upload</button>
+            </div>
             <div className="w-full flex items-center flex-col text-left">
                 <label htmlFor="shoeName" className="w-full text-base">Shoe Name</label>
                 <input value={shoeName} onChange={(e) => setShoeName(e.target.value)} type="text" className="w-full bg-muted-foreground px-2 py-1 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" id="shoeName" name="shoeName" />
