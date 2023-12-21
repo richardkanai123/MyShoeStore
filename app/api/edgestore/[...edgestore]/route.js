@@ -6,8 +6,7 @@ const es = initEdgeStore.create();
 const edgeStoreRouter = es.router({
     publicFiles: es.fileBucket(
         {
-            accept: ['image/jpeg', 'image / png'],
-            maxSize: 1024,
+            accept: ['image/jpeg', 'image/png'],
         }
     ),
 

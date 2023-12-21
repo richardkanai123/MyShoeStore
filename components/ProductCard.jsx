@@ -7,19 +7,19 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import Image from 'next/image'
 import Link from 'next/link'
 const ProductCard = ({ Shoe }) => {
-    const { brandName, price, imageURL, shoeId } = Shoe
+    const { brandName, price, shoeName, image, _id } = Shoe
 
     const SelectLogo = Logos.filter((logo) => logo.brand === brandName)
 
     return (
-        <Link href={`/shop/Product/${shoeId}?id=${shoeId}`}>
-            <Card id={shoeId} className={cn('w-full min-w-[90vw] bg-slate-100 dark:bg-sky-950 cursor-pointer opacity-90 hover:filter transition-all ease-in md:min-w-[350px] hover:opacity-100 shadow-sm hover:shadow-inner  dark:shadow-teal-500 delay-75')}>
+        <Link href={`/shop/Product/${_id}?id=${_id}`}>
+            <Card id={_id} className={cn('w-full min-w-[90vw] bg-slate-100 dark:bg-sky-950 cursor-pointer opacity-90 hover:filter transition-all ease-in md:min-w-[350px] hover:opacity-100 shadow-sm hover:shadow-inner  dark:shadow-teal-500 delay-75')}>
                 <CardHeader>
-                    <CardTitle>{brandName}</CardTitle>
+                    <CardTitle>{shoeName}</CardTitle>
                 </CardHeader>
                 <CardContent className={cn('relative mx-auto self-center w-full  mb-4 aspect-video object-center px-2 sm:max-w-full md:max-w-sm')}>
-                    <Image src={imageURL} alt={brandName + shoeId} fill style={{
-                        objectFit: 'cover',
+                    <Image src={image} alt={brandName + _id} fill style={{
+                        objectFit: 'contain',
                         objectPosition: "center"
 
                     }} className={cn('rounded')} />

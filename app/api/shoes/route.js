@@ -1,16 +1,41 @@
-import { Shoes } from "@/data";
+import { Shoe } from "@/lib/Models/Shoe";
+import ConnectMongoDB from "@/lib/db/Mongodb";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
-    const searchParams = request.nextUrl.searchParams
-    const q = searchParams.get('q')
-    if (q === 'all' || q == null) {
-        return NextResponse.json({ Shoes }, { status: 200 })
-    } else {
-        const data = Shoes.filter((shoe) => shoe.category.toLowerCase() == q.toLowerCase() || shoe.brandName == q.toLowerCase())
-        if (data.length === 0) {
-            return NextResponse.json({ message: "Category does not exist" }, { status: 404 })
-        }
-        return NextResponse.json({ data }, { status: 200 })
+
+    try {
+        await ConnectMongoDB()
+        const Shoes = await Shoe.find()
+        return NextResponse.json(Shoes, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 404 })
+
     }
+}
+
+
+export async function POST(request) {
+    const { shoeName, price, brandName, sizes, colors, description, image, category } = await request.json();
+    try {
+        await ConnectMongoDB()
+        await Shoe.create({
+            shoeName,
+            price,
+            brandName,
+            image,
+            description,
+            sizes,
+            colors,
+            category,
+        })
+
+        return NextResponse.json({ message: "Shoe Added!" }, { status: 201 })
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 406 })
+
+    }
+
+
+
 }

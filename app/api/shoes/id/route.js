@@ -1,15 +1,15 @@
-import { Shoes } from "@/data";
+import { Shoe } from "@/lib/Models/Shoe";
+import ConnectMongoDB from "@/lib/db/Mongodb";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url)
     const id = searchParams.get('id')
-    const data = Shoes.filter((item) => item.shoeId === parseInt(id))
-
-    if (data.length != 0) {
-        return NextResponse.json({ data }, { status: 200 })
-    }
-    else {
-        return NextResponse.json({ message: "No data Found!" }, { status: 404 })
+    try {
+        await ConnectMongoDB()
+        const Shoedata = await Shoe.findById(id)
+        return NextResponse.json(Shoedata, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 404 })
     }
 }

@@ -1,6 +1,4 @@
 'use client'
-
-import { SingleImageDropzone } from '@/components/ImageDropZone';
 import { Button } from '@/components/ui/button';
 import { useEdgeStore } from '@/lib/edgestore';
 import { cn } from '@/lib/utils';
@@ -104,6 +102,19 @@ const AddNewProductPage = () => {
     };
 
 
+    const AddNewShoe = async () => {
+        if (shoeImage) {
+            const res = await edgestore.publicFiles.upload({
+                file: shoeImage,
+                onProgressChange: (progress) => {
+                    // you can use this to show a progress bar
+                    console.log(progress);
+                    setUploadProgress(() => (progress))
+                },
+            });
+            console.log(res);
+        }
+    }
 
 
 
@@ -113,33 +124,22 @@ const AddNewProductPage = () => {
 
             <div className="w-full flex items-center flex-col text-left">
                 <label className="w-full text-base" htmlFor="shoeImage">Shoe Image</label>
-                <input type='file' onChange={
-                    (e) => setShoeImage(e.target.files?.[0])} accept='image' max={50000} id='shoeImage' name='shoeImage' className="w-full bg-muted-foreground p-4 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" />
-
-                <div className="w-full mt-3 mb-2 mx-auto bg-muted h-4 rounded-lg ease-linear duration-100 transition-all">
-                    <div style={{
-                        width: uploadProgress
-                    }} className="bg-lime-800 h-full rounded-lg"></div>
-                </div>
-
-                <button onClick={async () => {
-                    try {
-                        if (shoeImage) {
-                            const res = await edgestore.PublicFiles.upload({
-                                shoeImage, onProgressChange: ((progress) => setUploadProgress(progress))
-                            })
-                            setShoeImageUrl({
-                                url: res.url,
-                                thumbnail: res.url,
-                            })
-
+                <input type='file'
+                    onChange={
+                        (e) => {
+                            setShoeImage(e.target.files?.[0]);
                         }
-
-                    } catch (error) {
-                        console.log(error);
                     }
-                }
-                } >upload</button>
+                    accept='image' max={50000} id='shoeImage' name='shoeImage'
+                    className="w-full bg-muted-foreground p-4 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" />
+
+                <div className="w-full mt-3 mb-2 mx-auto bg-muted h-5 rounded-lg ease-linear duration-100 transition-all">
+                    <div style={{
+                        width: `${uploadProgress}%`
+                    }} className="bg-lime-800 h-full rounded-lg animate-in delay-75 duration-75 ">
+                        {uploadProgress === 100 && <p className='text-center text-xs font-bold  text-white'>Uploaded✅</p>}
+                    </div>
+                </div>
             </div>
             <div className="w-full flex items-center flex-col text-left">
                 <label htmlFor="shoeName" className="w-full text-base">Shoe Name</label>
@@ -173,12 +173,12 @@ const AddNewProductPage = () => {
             </div>
 
             <div className="w-full flex items-center flex-col text-left mt-2">
-                <p className='w-full text-base'>Select Size:</p>
+                <p className='w-full text-base'>Select Sizes:</p>
                 <section className='w-full items-center flex flex-wrap gap-1'>
                     {sizes.map((size) => (
                         <label key={size} className=' flex flex-wrap p-1 items-center '>
                             <input
-                                className='bg-foreground'
+                                className='bg-foreground first-letter:'
                                 type="radio"
                                 name="size"
                                 value={size}
@@ -194,7 +194,7 @@ const AddNewProductPage = () => {
 
                 <div className='w-full text-base'>
                     <p className='text-base font-medium'>Selected Sizes:</p>
-                    <ul className='w-full flex flex-wrap gap-1 font-normal bg-muted p-2 rounded'>
+                    <ul className='w-fit flex flex-wrap gap-1 font-normal bg-muted p-2 rounded'>
                         {sizesArray.map((item, index) => (
                             <li onClick={() => handleRemoveSize(index)} className='p-2  hover:opacity-75 cursor-grab delay-150 rounded bg-opacity-90 bg-zinc-300 dark:bg-sky-800 animate-in fade-in-25 ' key={index}>{item}</li>
                         ))}
