@@ -27,14 +27,14 @@ const ProductCard = ({ Shoe }) => {
                 <CardFooter>
                     <div className="w-full flex justify-around">
                         <Avatar className={cn(' object-cover bg-opacity-70')}>
-                            <AvatarImage src={SelectLogo[0].logo} />
-                            <AvatarFallback>{brandName}</AvatarFallback>
+                            <AvatarImage src={SelectLogo.length > 0 ? SelectLogo[0].logo : 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
+                            <AvatarFallback AvatarFallback > {brandName}</AvatarFallback>
                         </Avatar>
                         <p className='text-xl font-semibold'>Ksh. {price}</p>
                     </div>
                 </CardFooter>
             </Card>
-        </Link>
+        </Link >
     )
 }
 

@@ -7,6 +7,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react"
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 
+
+
+
 const ProductDetail = ({ shoe }) => {
     const { _id, brandName, shoeName, category, price, sizes, colors, description, image } = shoe
 
@@ -14,41 +17,56 @@ const ProductDetail = ({ shoe }) => {
     const searchParams = useSearchParams()
     const { replace } = useRouter()
     const pathname = usePathname()
+    const Router = useRouter()
 
     // size
     const AddSizeToPathUrl = (shoeSize) => {
         const params = new URLSearchParams(searchParams)
         params.set('size', parseInt(shoeSize))
-        replace(`${pathname}?${params}`)
+        replace(`${pathname}?${params}`, { scroll: false })
     }
     // Color
     const AddColorToPathUrl = (shoeColor) => {
         const params = new URLSearchParams(searchParams)
         params.set('color', shoeColor)
-        replace(`${pathname}?${params}`)
+        replace(`${pathname}?${params}`, { scroll: false })
+
     }
     // Quantity
     const AddQntyToPathUrl = (shoeQnty) => {
         const params = new URLSearchParams(searchParams)
         params.set('qnty', shoeQnty)
-        replace(`${pathname}?${params}`)
+        replace(`${pathname}?${params}`, { scroll: false })
+
     }
 
+    // Quantity
+    const AddParamToUrl = (param, variable) => {
+        const params = new URLSearchParams(searchParams)
+        params.set(param, variable)
+        replace(`${pathname}?${params}`, { scroll: false })
+    }
 
+    // clerk user
     const { isSignedIn } = useUser()
+
+
+
 
     return (
         <div className="container py-2 px-4 flex flex-col items-center md:flex-row align-middle transition-all ease-in delay-75 md:gap-10">
 
             <div className="flex flex-col rounded sm:w-full mb-4  w-[300px] max-w-sm min-h-[400px] md:h-auto relative object-center overflow-hidden md:min-w-[350px] md:max-w-[50px] ">
                 <Image src={image} alt={brandName + category} fill style={{
-                    objectFit: "cover"
+                    objectFit: "contain"
                 }} className="rounded-sm" />
 
             </div>
             <div className="w-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-3">{shoeName}</h3>
+                <h3 className="text-2xl font-bold">{shoeName}</h3>
+                <p className="text-base font-semibold mb-3">{brandName}</p>
                 <div className="flex gap-2 w-full items-center align-middle flex-wrap mb-3">
+                    <p className="text-base">Size:</p>
                     {sizes.map((size) =>
                         <Button
                             id={size}
@@ -61,6 +79,7 @@ const ProductDetail = ({ shoe }) => {
                     }
                 </div>
                 <div className="flex gap-2 w-full items-center align-middle flex-wrap mb-3">
+                    <p className="text-base">Color:</p>
                     {colors.map((color) => <Button
                         onClick={() => AddColorToPathUrl(color)}
                         className={searchParams.get('color') === color ? cn('bg-sky-200 hover:bg-sky-200 active:bg-sky-200 transition-all ease-in ') : ('hover:bg-sky-200 active:bg-sky-200 transition-all ease-in ')}
@@ -81,19 +100,17 @@ const ProductDetail = ({ shoe }) => {
                         <Button
                             disabled={searchParams.get('qnty') == 1}
                             size='icon'
-                            scroll={false}
                             onClick={(e) => {
                                 e.preventDefault()
                                 const params = new URLSearchParams(searchParams)
                                 if (searchParams.get('qnty') && parseInt(searchParams.get('qnty')) > 1) {
                                     const count = parseInt(searchParams.get('qnty'))
                                     params.set('qnty', parseInt(count - 1))
-                                    replace(`${pathname}?${params}`)
+                                    replace(`${pathname}?${params}`, { scroll: false })
                                 }
                                 else {
                                     params.set('qnty', 2)
-                                    replace(`${pathname}?${params}`)
-
+                                    replace(`${pathname}?${params}`, { scroll: false })
                                 }
 
                             }}
@@ -114,14 +131,12 @@ const ProductDetail = ({ shoe }) => {
                                 if (searchParams.get('qnty') && parseInt(searchParams.get('qnty')) > 1) {
                                     const count = parseInt(searchParams.get('qnty'))
                                     params.set('qnty', parseInt(count + 1))
-                                    replace(`${pathname}?${params}`)
-
+                                    replace(`${pathname}?${params}`, { scroll: false })
                                 }
                                 else {
 
                                     params.set('qnty', 2)
-                                    replace(`${pathname}?${params}`)
-
+                                    replace(`${pathname}?${params}`, { scroll: false })
                                 }
 
                             }} className={cn('flex align-middle')}>

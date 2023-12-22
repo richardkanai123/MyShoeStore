@@ -2,10 +2,13 @@
 import { Button } from '@/components/ui/button';
 import { useEdgeStore } from '@/lib/edgestore';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 const AddNewProductPage = () => {
+    // Router
+    const Router = useRouter()
     //states
     const [selectedColor, setSelectedColor] = useState('');
     const [colorsArray, setColorsArray] = useState([]);
@@ -16,6 +19,7 @@ const AddNewProductPage = () => {
     const [shoeCategory, setShoeCategory] = useState('');
     const [shoePrice, setShoePrice] = useState(0);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [stock, setShoeStock] = useState(1);
     const [shoeDescprition, setShoeDescprition] = useState('');
     const [shoeImage, setShoeImage] = useState();
     const [shoeImageUrl, setShoeImageUrl] = useState({
@@ -108,11 +112,36 @@ const AddNewProductPage = () => {
                 file: shoeImage,
                 onProgressChange: (progress) => {
                     // you can use this to show a progress bar
-                    console.log(progress);
                     setUploadProgress(() => (progress))
+                    if (progress === 100) {
+                        toast.done('Image Uploaded')
+                    }
                 },
             });
-            console.log(res);
+            // Add shoe to database
+            try {
+                const shoeRes = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/shoes`, {
+                    method: "POST",
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        image: res.url,
+                        shoeName: shoeName,
+                        price: shoePrice,
+                        brandName: shoeBrand,
+                        sizes: sizesArray,
+                        colors: colorsArray,
+                        category: shoeCategory,
+                        stock: stock,
+                        description: shoeDescprition
+                    })
+                })
+                Router.replace('/Admin/Products/Add/Success')
+            } catch (error) {
+                toast.error(error.message)
+            }
+
         }
     }
 
@@ -172,13 +201,19 @@ const AddNewProductPage = () => {
                 <p className="text-sm text-red-300 mt-2"></p>
             </div>
 
+            <div className="w-full flex items-center flex-col text-left">
+                <label htmlFor="stock" className="w-full text-base">Stock</label>
+                <input type="number" min={1} value={stock} onChange={(e) => setShoeStock(e.target.valueAsNumber)} className="w-full bg-muted-foreground px-2 py-1 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" id="stock" name="stock" />
+                <p className="text-sm text-red-300 mt-2"></p>
+            </div>
+
             <div className="w-full flex items-center flex-col text-left mt-2">
                 <p className='w-full text-base'>Select Sizes:</p>
                 <section className='w-full items-center flex flex-wrap gap-1'>
                     {sizes.map((size) => (
                         <label key={size} className=' flex flex-wrap p-1 items-center '>
                             <input
-                                className='bg-foreground first-letter:'
+                                className='bg-foreground'
                                 type="radio"
                                 name="size"
                                 value={size}
@@ -246,9 +281,7 @@ const AddNewProductPage = () => {
             </div>
 
 
-            <Button onClick={() => console.log(
-                shoePrice, shoeBrand, shoeName, shoeCategory, shoeDescprition, sizesArray, colorsArray
-            )} className={cn('w-full max-w-xs font-bold text-lg mt-2 mb-6')}>Add Shoe</Button>
+            <Button onClick={AddNewShoe} className={cn('w-full max-w-xs font-bold text-lg mt-2 mb-6')}>Add Shoe</Button>
 
         </div>
     )

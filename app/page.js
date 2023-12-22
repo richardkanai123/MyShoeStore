@@ -1,6 +1,5 @@
 import { ScrollAreaHorizontalDemo } from '@/components/CartegoryScroll'
 import HomeShoesList from '@/components/HomeShoesList'
-import ShoeList from '@/components/ShoeList'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'

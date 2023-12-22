@@ -16,7 +16,7 @@ export async function GET(request) {
 
 
 export async function POST(request) {
-    const { shoeName, price, brandName, sizes, colors, description, image, category } = await request.json();
+    const { shoeName, price, brandName, sizes, colors, description, image, category, stock } = await request.json();
     try {
         await ConnectMongoDB()
         await Shoe.create({
@@ -28,6 +28,7 @@ export async function POST(request) {
             sizes,
             colors,
             category,
+            stock
         })
 
         return NextResponse.json({ message: "Shoe Added!" }, { status: 201 })
