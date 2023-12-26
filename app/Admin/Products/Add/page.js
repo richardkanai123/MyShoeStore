@@ -53,8 +53,19 @@ const AddNewProductPage = () => {
         "Prada",
         "Fila",
         "Salomon",
-        "Brooks"
+        "Brooks",
+        "Hoka One One",
+        "Mizuno",
+        "Onitsuka Tiger",
+        "Lacoste",
+        "Ecco",
+        "Merrell",
+        "Adidas Originals",
+        "Puma",
+        "Saucony",
+        "Louboutin"
     ];
+
 
     const shoeTypes = [
         "Sneakers",
@@ -178,7 +189,6 @@ const AddNewProductPage = () => {
             <div className="w-full flex items-center flex-col text-left">
                 <label htmlFor="brandName" className="w-full text-base">Brand</label>
                 <select id="brandName" value={shoeBrand} onChange={(e) => setShoeBrand(e.target.value)} className="w-full bg-muted-foreground px-2 py-1 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" >
-                    <option value="select">Select</option>
                     {
                         shoeBrands.map((brand) => <option id={brand} value={brand} name="brandName" key={brand}>{brand}</option>)
                     }
@@ -188,7 +198,6 @@ const AddNewProductPage = () => {
             <div className="w-full flex items-center flex-col text-left">
                 <label htmlFor="shoeCategory" className="w-full text-base">Category</label>
                 <select id="shoeCategory" value={shoeCategory} onChange={(e) => setShoeCategory(e.target.value)} name="shoeCategory" className="w-full bg-muted-foreground px-2 py-1 ring-0 outline-0 rounded text-base font-semibold  self-start max-w-sm" >
-                    <option value="select">Select</option>
                     {
                         shoeTypes.map((type) => <option id={type} value={type} name="shoeCategory" key={type}>{type}</option>)
                     }
@@ -211,9 +220,9 @@ const AddNewProductPage = () => {
                 <p className='w-full text-base'>Select Sizes:</p>
                 <section className='w-full items-center flex flex-wrap gap-1'>
                     {sizes.map((size) => (
-                        <label key={size} className=' flex flex-wrap p-1 items-center '>
+                        <label key={'size'} className=' flex flex-wrap p-1 items-center '>
                             <input
-                                className='bg-foreground'
+
                                 type="radio"
                                 name="size"
                                 value={size}
@@ -244,9 +253,9 @@ const AddNewProductPage = () => {
                 <p className='w-full text-base'>Select Colors:</p>
                 <section className='w-full items-center flex flex-wrap gap-1'>
                     {colors.map((color) => (
-                        <label key={color} className=' flex flex-wrap p-1 items-center '>
+                        <label key={'color'} className=' flex flex-wrap p-1 items-center '>
                             <input
-                                className='bg-foreground'
+
                                 type="radio"
                                 name="color"
                                 value={color}

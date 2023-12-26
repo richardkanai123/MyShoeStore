@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react"
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
+import { toast } from "react-toastify"
 
 
 
@@ -48,9 +49,13 @@ const ProductDetail = ({ shoe }) => {
     }
 
     // clerk user
-    const { isSignedIn } = useUser()
+    const { isSignedIn, user } = useUser()
 
-
+    // notification 
+    const notify = (toastType, message) => toast(message,
+        {
+            type: toastType
+        });
 
 
     return (
@@ -124,7 +129,6 @@ const ProductDetail = ({ shoe }) => {
 
                         <Button
                             size='icon'
-                            scroll={false}
                             onClick={(e) => {
                                 e.preventDefault()
                                 const params = new URLSearchParams(searchParams)
@@ -147,8 +151,26 @@ const ProductDetail = ({ shoe }) => {
 
                 {
                     isSignedIn ? <Button
-                        onClick={() => {
-                            console.log(searchParams.get('size'), searchParams.get('color'), searchParams.get('qnty'), _id)
+                        onClick={async () => {
+                            // add item to cart
+                            try {
+                                const res = await fetch(`/api/cart?shoeId=${_id}&size=${searchParams.get('size')}&color=${searchParams.get('color')}&quantity=${searchParams.get('qnty')}`,
+                                    {
+                                        method: 'POST'
+                                    }
+                                )
+                                if (res.status === 201) {
+                                    notify('success', "Added to Cart")
+                                } else if (res.status === 403) {
+                                    notify("info", res.statusText)
+                                }
+                                else {
+                                    notify('error', 'Please try again')
+                                }
+                            } catch (err) {
+                                console.log(err)
+                                notify('error', err.message)
+                            }
                         }}
                         className={cn('w-[250px] self-center hover:bg-opacity-50 hover:bg-muted-foreground flex items-center gap-2 hover:animate-pulse ')}>Add to Cart <ShoppingCartIcon /> </Button>
                         :

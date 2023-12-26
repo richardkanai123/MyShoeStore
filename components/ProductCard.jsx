@@ -12,7 +12,7 @@ const ProductCard = ({ Shoe }) => {
     const SelectLogo = Logos.filter((logo) => logo.brand === brandName)
 
     return (
-        <Link href={`/shop/Product/${_id}?id=${_id}`}>
+        <Link href={`/shop/Product/${_id}?id=${_id}&qnty=1`}>
             <Card id={_id} className={cn('w-full min-w-[90vw] bg-slate-100 dark:bg-sky-950 cursor-pointer opacity-90 hover:filter transition-all ease-in md:min-w-[350px] hover:opacity-100 shadow-sm hover:shadow-inner  dark:shadow-teal-500 delay-75')}>
                 <CardHeader>
                     <CardTitle>{shoeName}</CardTitle>

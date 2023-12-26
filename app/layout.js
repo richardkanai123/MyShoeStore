@@ -4,7 +4,8 @@ import NavBar from '@/components/NavBar'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 import { EdgeStoreProvider } from '@/lib/edgestore'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 export const metadata = {
   title: 'BizShop',
   description: 'Best online Shop Model',
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
                 {children}
               </main>
             </EdgeStoreProvider>
+            <ToastContainer limit={2} theme="colored" />
           </ThemeProvider>
         </body>
       </html>

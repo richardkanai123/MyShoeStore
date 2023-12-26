@@ -7,7 +7,6 @@ const ProductPage = async ({ params }) => {
         throw new Error('Cannot find Shoe')
     }
     const data = await res.json()
-    console.log(data);
     return (
         <ProductDetail shoe={data} />
     )
