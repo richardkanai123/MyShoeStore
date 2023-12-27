@@ -5,13 +5,15 @@ import { auth, currentUser } from '@clerk/nextjs'
 
 
 
+
+// console.log(userId);
 export async function POST(req) {
     // user 
     const { userId } = auth();
     const url = new URL(req.url)
     await connectMBD();
     if (!userId) {
-        return new NextResponse("Unauthorized", { status: 401 });
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
     try {
         // item in cart contains this userid and shoeid
@@ -47,11 +49,13 @@ export async function POST(req) {
 export async function GET(req) {
     await connectMBD()
     const url = new URL(req.url)
+    // const { userId } = auth();
 
     try {
         const shoesInCart = await CartItems.find({
-            userId: url.searchParams.get('user')
-        })
+            userId: url.searchParams.get('user'),
+
+        }).populate("shoeId", ['image', 'stock', 'price', 'shoeName'])
 
         if (shoesInCart.length === 0) {
             return NextResponse.json({ message: "No items in cart" }, { status: 202 })

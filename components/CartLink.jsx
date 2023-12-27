@@ -8,7 +8,6 @@ const CartLink = () => {
     return (
         <Button variant='link' className={cn('w-full rounded-md relative')}>
             <Link className=' dark:text-sky-300 hover:text-sky-200 dark:hover:text-sky-200 underline' href={'/cart'}> <ShoppingCartIcon className="w-6 h-6 " /></Link>
-            <span className=" text-lg text-yellow-500 font-extrabold">2</span>
         </Button>
     )
 }

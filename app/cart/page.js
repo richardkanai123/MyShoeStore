@@ -1,49 +1,38 @@
-import { currentUser } from '@clerk/nextjs'
-import React from 'react'
+import CartItemsLister from '@/components/CartItemsLister'
+import { currentUser, auth } from '@clerk/nextjs'
+import React, { Suspense } from 'react'
 
-const CartPage = async () => {
-    // [
-    //     {
-    //         "_id": "658b1a213677400f54f5c910",
-    //         "shoeId": "65854cc46460701d5a5a75b6",
-    //         "userId": "user_2ZiSUtBy4uQ9m0Zwy3guwA9y5LA",
-    //         "quantity": 2,
-    //         "color": "Black",
-    //         "size": "43",
-    //         "createdAt": "2023-12-26T18:23:29.856Z",
-    //         "updatedAt": "2023-12-26T18:23:29.856Z",
-    //         "__v": 0
-    //     }
-    // ]
-
-    const user = await currentUser()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/cart?user=${user.id}`, {
-        method: 'GET'
+const GetCartData = async () => {
+    const { userId } = auth()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/cart?user=${userId}`, {
+        cache: "no-cache",
     })
-    if (res.status === 204) {
-        return (<div>
-            <h1>No Items Found in Cart, go to Shop to see products</h1>
-        </div>)
-    }
 
-    if (res.status === 400 || res.status === 404) {
-        return (
-            <div>
-                <p className="text-red-500">An Error occured</p>
-            </div>
-        )
+    if (res.status !== 200) {
+        throw new Error('Failed to fetch data')
     }
-
-    if (res.status === 200) {
-        const cartData = await res.json()
-        return (
-            <div>
-                {
-                    cartData.map((item) => <pre key={item._id}> {item.shoeId} </pre>)
-                }
-            </div>
-        )
-    }
+    const Items = await res.json()
+    return Items
 }
+const CartPage = async () => {
+
+    const Items = await GetCartData()
+
+
+    return (
+        <div className='flex flex-col gap-2 container'>
+            <h1 className="text-xl underline underline-offset-1 animate-in duration-75 delay-75 ">Your Cart</h1>
+            <div className='w-full px-4 py-2 flex  flex-col'>
+                <Suspense fallback={<p className='text-sm italic'>Loading Cart items....</p>}>
+                    {
+
+                        Items.map((item) => <CartItemsLister key={item._id} item={item} />)
+                    }
+                </Suspense>
+            </div>
+        </div>
+    )
+}
+
 
 export default CartPage
